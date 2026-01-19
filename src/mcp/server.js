@@ -61,9 +61,11 @@ class MetabaseMCPServer {
       await this.metabaseClient.authenticate();
       logger.info('Metabase client initialized');
 
+      
       // Initialize AI assistant if API keys are available
       if (process.env.ANTHROPIC_API_KEY || process.env.OPENAI_API_KEY) {
         this.aiAssistant = new MetabaseAIAssistant({
+          llm_baseUrl:process.env.LLM_BASEURL,
           metabaseClient: this.metabaseClient,
           anthropicApiKey: process.env.ANTHROPIC_API_KEY,
           openaiApiKey: process.env.OPENAI_API_KEY,

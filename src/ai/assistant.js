@@ -5,16 +5,21 @@ import { FileOperations } from '../utils/file-operations.js';
 
 export class MetabaseAIAssistant {
   constructor(config) {
+
+    baseURL= config.llm_baseUrl
+
     this.metabaseClient = config.metabaseClient;
     this.aiProvider = config.aiProvider || 'anthropic';
     this.fileOps = new FileOperations(config.fileOptions);
     
     if (this.aiProvider === 'anthropic') {
       this.ai = new Anthropic({
+        baseURL,
         apiKey: config.anthropicApiKey
       });
     } else {
       this.ai = new OpenAI({
+        baseURL,
         apiKey: config.openaiApiKey
       });
     }
