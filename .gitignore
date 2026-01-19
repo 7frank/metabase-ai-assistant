@@ -28,7 +28,6 @@ coverage/
 .DS_Store
 
 # Build
-dist/
 build/
 
 # Temporary files
